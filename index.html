@@ -1,9 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Trade Dashboard</title>
+    <style>
+        /* ===== Global Styles ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f6fa;
+            color: #2f3640;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e272e;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .card h2 {
+            margin: 10px 0;
+            font-size: 1.25em;
+            color: #273c75;
+        }
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e1b12c;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: #40739e;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #2f3640;
+        }
+    </style>
 </head>
 <body>
-    <h1>Global Trade Dashboard - Test Live</h1>
+    <header>Global Trade Dashboard</header>
+    <main>
+        <!-- Example Card -->
+        <div class="card" id="stock1">
+            <h2>Stock A</h2>
+            <div class="price" id="price1">$0.00</div>
+            <button onclick="buyStock('A')">Buy</button>
+            <button onclick="sellStock('A')">Sell</button>
+        </div>
+
+        <div class="card" id="stock2">
+            <h2>Stock B</h2>
+            <div class="price" id="price2">$0.00</div>
+            <button onclick="buyStock('B')">Buy</button>
+            <button onclick="sellStock('B')">Sell</button>
+        </div>
+
+        <div class="card" id="stock3">
+            <h2>Stock C</h2>
+            <div class="price" id="price3">$0.00</div>
+            <button onclick="buyStock('C')">Buy</button>
+            <button onclick="sellStock('C')">Sell</button>
+        </div>
+    </main>
+
+    <script>
+        // ===== Dummy API Data (Replace with real API) =====
+        const stockData = {
+            A: 12.34,
+            B: 45.67,
+            C: 89.01
+        };
+
+        function updatePrices() {
+            document.getElementById('price1').innerText = `$${stockData.A.toFixed(2)}`;
+            document.getElementById('price2').innerText = `$${stockData.B.toFixed(2)}`;
+            document.getElementById('price3').innerText = `$${stockData.C.toFixed(2)}`;
+        }
+
+        function buyStock(symbol) {
+            alert(`Buy order placed for ${symbol}`);
+        }
+
+        function sellStock(symbol) {
+            alert(`Sell order placed for ${symbol}`);
+        }
+
+        // Update prices every 5 seconds (simulate live update)
+        updatePrices();
+        setInterval(updatePrices, 5000);
+    </script>
 </body>
-</html>
+    </html>
