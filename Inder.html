@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Trade - Swiss Banker Edition Live</title>
+<style>
+/* ===== Global Styles ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    color: #1e1e1e;
+}
+header {
+    background-color: #0a1f44;
+    color: #fff;
+    padding: 20px;
+    font-size: 1.7em;
+    font-weight: bold;
+    text-align: center;
+}
+main {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.card h2 {
+    margin: 10px 0;
+    color: #0a1f44;
+    font-size: 1.3em;
+}
+.price {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #e0a800;
+    margin: 10px 0;
+}
+button {
+    margin: 5px 5px 0 5px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #0a1f44;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+button:hover {
+    background-color: #1f3a70;
+}
+footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #888;
+}
+</style>
+</head>
+<body>
+<header>Global Trade - Swiss Banker Edition Live</header>
+<main>
+<!-- Stock Cards -->
+<div class="card" id="stock1">
+    <h2>FFAI</h2>
+    <div class="price" id="price1">$0.00</div>
+    <button onclick="buyStock('FFAI')">Buy</button>
+    <button onclick="sellStock('FFAI')">Sell</button>
+</div>
+
+<div class="card" id="stock2">
+    <h2>CALC</h2>
+    <div class="price" id="price2">$0.00</div>
+    <button onclick="buyStock('CALC')">Buy</button>
+    <button onclick="sellStock('CALC')">Sell</button>
+</div>
+
+<div class="card" id="stock3">
+    <h2>ARCT</h2>
+    <div class="price" id="price3">$0.00</div>
+    <button onclick="buyStock('ARCT')">Buy</button>
+    <button onclick="sellStock('ARCT')">Sell</button>
+</div>
+</main>
+<footer>© Global Trade 2026 | Swiss Banker Edition Live</footer>
+
+<script>
+const API_URL = 'https://d1-template.4starly.workers.dev/';
+
+// ===== Fetch live data from Worker API =====
+async function fetchLiveData() {
+    try {
+        const resp = await fetch(API_URL);
+        const data = await resp.json();
+
+        // Assuming API returns prices like { FFAI: 12.34, CALC: 56.78, ARCT: 9.01 }
+        document.getElementById('price1').innerText = `$${data.FFAI.toFixed(2)}`;
+        document.getElementById('price2').innerText = `$${data.CALC.toFixed(2)}`;
+        document.getElementById('price3').innerText = `$${data.ARCT.toFixed(2)}`;
+    } catch(err) {
+        console.error('Error fetching live data:', err);
+    }
+}
+
+// ===== Buy/Sell Button Functions =====
+function buyStock(symbol) {
+    alert(`Buy order placed for ${symbol} at ${document.getElementById('price'+getIndex(symbol)).innerText}`);
+}
+
+function sellStock(symbol) {
+    alert(`Sell order placed for ${symbol} at ${document.getElementById('price'+getIndex(symbol)).innerText}`);
+}
+
+// Helper to map symbol to element ID
+function getIndex(symbol) {
+    if(symbol==='FFAI') return 1;
+    if(symbol==='CALC') return 2;
+    if(symbol==='ARCT') return 3;
+    return 0;
+}
+
+// ===== Initial Load & Refresh Every 5 Seconds =====
+fetchLiveData();
+setInterval(fetchLiveData, 5000);
+</script>
+</body>
+</html>
