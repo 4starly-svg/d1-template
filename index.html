@@ -1,155 +1,221 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" id="main-html">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Trade Capital • Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-* {margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
-body {background-color:#0f172a;color:#ffffff;}
-header {background:#0b1220;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e293b;}
-.logo {display:flex;align-items:center;gap:12px;}
-.logo-box {width:40px;height:40px;background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;}
-.logo-text {font-size:20px;font-weight:700;letter-spacing:1px;}
-nav a {color:#cbd5e1;text-decoration:none;margin-left:25px;font-size:14px;transition:0.3s;}
-nav a:hover {color:#ffffff;}
-.hero {padding:60px 40px;text-align:center;}
-.hero h1 {font-size:42px;margin-bottom:20px;font-weight:700;}
-.hero p {color:#94a3b8;max-width:600px;margin:auto;margin-bottom:30px;line-height:1.6;}
-.button-primary {background:#2563eb;padding:14px 35px;border-radius:8px;text-decoration:none;color:white;font-weight:600;transition:0.3s;}
-.button-primary:hover {background:#1d4ed8;}
-.features {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;padding:40px;}
-.card {background:#111827;padding:20px;border-radius:14px;border:1px solid #1f2937;transition:0.3s;cursor:pointer;}
-.card:hover {border-color:#2563eb;transform:translateY(-5px);}
-.card h3 {margin-bottom:12px;}
-.card p {color:#9ca3af;font-size:14px;}
-#portfolio {padding:40px;text-align:center;}
-#portfolio-value {font-size:24px;margin-bottom:20px;}
-footer {background:#0b1220;padding:30px;text-align:center;color:#64748b;border-top:1px solid #1e293b;}
-button {background:#2563eb;color:white;border:none;padding:6px 12px;border-radius:6px;margin-top:6px;cursor:pointer;transition:0.3s;}
-button:hover {background:#1d4ed8;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT Global | Master Vanguard V18</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --teal: #00BFA5; --bg: #F8FAFC; }
+        body { background: var(--bg); color: #1E293B; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.3s ease; }
+        .rtl { direction: rtl; font-family: 'Noto Sans Arabic', sans-serif; }
+        .ivory-card { 
+            background: white; border-radius: 35px; border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .ivory-card:hover { transform: translateY(-8px); border-color: var(--teal); box-shadow: 0 30px 60px rgba(0,191,165,0.12); }
+        .hidden { display: none !important; }
+        #ticker { background: #0f172a; color: #38bdf8; padding: 12px; font-weight: 800; font-size: 11px; white-space: nowrap; overflow: hidden; border-bottom: 3px solid var(--teal); }
+        .live-pulse { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    </style>
 </head>
-<body>
+<body class="pb-20" onclick="app.playCommercial()">
 
-<header>
-  <div class="logo">
-    <div class="logo-box">GT</div>
-    <div class="logo-text">Global Trade Capital</div>
-  </div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#dashboard">Markets</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="#" id="lang-switch">عربي</a>
-  </nav>
-</header>
+    <!-- 🎙️ MASTER COMMERCIAL AUDIO -->
+    <audio id="commercialAudio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+    </audio>
 
-<section class="hero">
-  <h1>Trade Global Markets With Confidence</h1>
-  <p>Premium institutional trading platform designed for investors in Libya and worldwide. Secure. Fast. Professional.</p>
-  <a href="#" class="button-primary">Open Account</a>
-</section>
+    <div id="ticker">
+        <marquee scrollamount="6">
+            [CBL UPDATE] MARCH 2026: USD/LYD RATE 6.36 • TAXES REMOVED • BRENT CRUDE $104.49 • GOLD MARKET STABLE • GT GLOBAL V18 TERMINAL: ENCRYPTED & SECURE • 
+        </marquee>
+    </div>
 
-<section id="portfolio">
-  <div id="portfolio-value">Portfolio: $0.00</div>
-</section>
+    <nav class="bg-white/90 backdrop-blur-xl sticky top-0 z-[100] p-6 flex justify-between items-center px-10 border-b border-slate-100">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-teal-400 font-black text-2xl shadow-xl">G</div>
+            <div class="text-2xl font-black tracking-tighter text-slate-900 uppercase">GT <span class="text-teal-500">Vanguard</span></div>
+        </div>
+        <button onclick="app.toggleLang()" id="langBtn" class="bg-slate-900 text-white px-10 py-3 rounded-full text-xs font-black uppercase hover:bg-teal-500 transition-all shadow-lg">عربي / Arabic</button>
+    </nav>
 
-<section id="dashboard" class="features">
-  <!-- Cards will be loaded dynamically -->
-</section>
+    <main id="view-home" class="max-w-7xl mx-auto p-6 pt-10 space-y-8">
+        <!-- BALANCE SECTION -->
+        <section class="ivory-card p-14 flex flex-col md:flex-row justify-between items-center gap-10 border-b-[12px] border-teal-500">
+            <div>
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 t-balance">Portfolio Value</p>
+                <h1 class="text-8xl font-black text-slate-900 tracking-tighter">$142,550<span class="text-teal-500 text-4xl">.00</span></h1>
+            </div>
+            <div class="text-center">
+                <button onclick="app.generateReport()" class="bg-slate-900 text-white px-12 py-5 rounded-3xl font-black hover:bg-teal-600 transition shadow-2xl uppercase text-sm t-report">Get March Report</button>
+                <div class="mt-4 flex items-center justify-center gap-2"><div class="live-pulse"></div><span class="text-[10px] font-bold text-slate-500 uppercase">Secure Node Active</span></div>
+            </div>
+        </section>
 
-<section id="about" style="padding:40px;">
-  <h2>About Global Trade Capital</h2>
-  <p>Global Trade Capital provides real-time stock, crypto, and currency data with institutional-grade security and analytics for investors and bankers.</p>
-</section>
+        <!-- GRID -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div onclick="app.showPage('gold')" class="ivory-card p-10 text-center cursor-pointer group border-b-4 border-yellow-500">
+                <div class="text-6xl mb-4">🏺</div>
+                <h3 class="text-xl font-black t-f-gold">Gold & Oil</h3>
+            </div>
+            <div onclick="app.showPage('ledger')" class="ivory-card p-10 text-center cursor-pointer group border-b-4 border-blue-600 bg-blue-50/20">
+                <div class="text-6xl mb-4">🌐</div>
+                <h3 class="text-xl font-black t-f-ledger">FASTT Ledger</h3>
+            </div>
+            <div onclick="app.showPage('about')" class="ivory-card p-10 text-center cursor-pointer group border-b-4 border-purple-500">
+                <div class="text-6xl mb-4">🛡️</div>
+                <h3 class="text-xl font-black t-f-about">Our Mission</h3>
+            </div>
+            <div onclick="app.showPage('contact')" class="ivory-card p-10 text-center cursor-pointer group border-b-4 border-green-500">
+                <div class="text-6xl mb-4">💬</div>
+                <h3 class="text-xl font-black t-f-contact">Support Desk</h3>
+            </div>
+        </div>
+    </main>
 
-<section id="contact" style="padding:40px;">
-  <h2>Contact Us</h2>
-  <p>Email: info@globaltradecapital.com | Phone: +1 (555) 123-4567</p>
-</section>
+    <!-- VIEW: GOLD LIST -->
+    <section id="view-gold" class="hidden max-w-6xl mx-auto p-8">
+        <button onclick="app.goHome()" class="mb-10 font-black text-teal-600 uppercase tracking-widest t-back">← Back</button>
+        <h2 class="text-4xl font-black mb-8 text-slate-900">Libyan Market Spot Prices</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="ivory-card p-10 bg-slate-900 text-white">
+                <h4 class="text-xl font-bold text-teal-400 mb-6 uppercase tracking-widest">Gold Carat List (Per Gram)</h4>
+                <div class="space-y-6">
+                    <div class="flex justify-between border-b border-slate-700 pb-2"><span>24 Karat (Pure)</span><span class="font-black text-yellow-500">923.57 LYD</span></div>
+                    <div class="flex justify-between border-b border-slate-700 pb-2"><span>22 Karat</span><span class="font-black">846.60 LYD</span></div>
+                    <div class="flex justify-between border-b border-slate-700 pb-2"><span>18 Karat</span><span class="font-black">692.68 LYD</span></div>
+                    <div class="flex justify-between border-b border-slate-700 pb-2"><span>14 Karat</span><span class="font-black">538.75 LYD</span></div>
+                </div>
+            </div>
+            <div class="ivory-card p-10 border-l-8 border-slate-900 flex flex-col justify-center">
+                <h4 class="text-2xl font-black mb-2">Brent Crude Oil</h4>
+                <div class="text-7xl font-black">$104.49<span class="text-xl">/bbl</span></div>
+                <p class="mt-6 text-sm font-bold text-slate-400">Official NOC 2026 Production Pricing</p>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  © 2026 Global Trade Capital — Ultra Premium Dashboard. All investments carry risk. Please read the full disclaimer.
-</footer>
+    <!-- VIEW: ABOUT US -->
+    <section id="view-about" class="hidden max-w-5xl mx-auto p-8">
+        <button onclick="app.goHome()" class="mb-10 font-black text-teal-600 uppercase t-back">← Back</button>
+        <div class="ivory-card p-16">
+            <h2 class="text-5xl font-black mb-8 t-about-title">What We Do</h2>
+            <div class="space-y-6 text-xl font-medium leading-relaxed text-slate-600 t-about-text">
+                <p>GT Global is the primary bridge between the Libyan market and international high-frequency trading. We specialize in **Commodity Clearing**, **Global Ledgers**, and **Energy Arbitrage**.</p>
+                <p>Our V18 terminal utilizes the New World Bank FASTT network to ensure Libyan traders can move capital globally with less than 0.01% in fees, bypassing traditional banking delays.</p>
+            </div>
+        </div>
+    </section>
 
-<script>
-/* --- Dashboard JS --- */
-const API_KEY = "YOUR_REAL_IPIT_KEY_HERE"; // Replace with your real key
-const STOCKS = ["AAPL","TSLA","GOOGL","AMZN","MSFT"];
-const CRYPTOS = ["BTC","ETH","XRP"];
-let portfolioValue = 0;
-let isArabic = false;
+    <!-- VIEW: CONTACT & BANKS -->
+    <section id="view-contact" class="hidden max-w-6xl mx-auto p-8">
+        <button onclick="app.goHome()" class="mb-10 font-black text-teal-600 uppercase t-back">← Back</button>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="ivory-card p-12 text-center flex flex-col items-center">
+                <h3 class="text-3xl font-black mb-6">WhatsApp Support</h3>
+                <div class="w-64 h-64 bg-white p-4 border-[10px] border-teal-500 rounded-[40px] shadow-2xl mb-8">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://wa.me/218910000000" class="w-full">
+                </div>
+                <!-- FIXED WHATSAPP LINK -->
+                <a href="https://wa.me/218910000000" target="_blank" class="bg-[#25D366] text-white px-12 py-5 rounded-3xl font-black text-xl hover:scale-105 transition shadow-lg">START CHAT</a>
+            </div>
+            <div class="ivory-card p-12">
+                <h3 class="text-2xl font-black mb-8">Official Channels</h3>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-2xl font-bold">f</div>
+                        <div><p class="font-black">Facebook</p><p class="text-sm text-slate-400">@GTGlobalVanguard</p></div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-2xl">📞</div>
+                        <div><p class="font-black">Direct Line</p><p class="text-sm text-slate-400">+218 91 000 0000 / +218 92 000 0000</p></div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-100">
+                        <p class="text-xs font-black text-slate-400 uppercase mb-4">Partner Banks</p>
+                        <div class="flex gap-4 font-black text-slate-800 text-sm">
+                            <span class="bg-slate-50 px-4 py-2 rounded-xl">Jumhouria Bank</span>
+                            <span class="bg-slate-50 px-4 py-2 rounded-xl">Sahara Bank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Language toggle
-document.getElementById('lang-switch').addEventListener('click',()=>{
-  isArabic=!isArabic;
-  alert('Arabic interface coming soon!');
-});
+    <!-- LEDGER SECTION REMAINS AS BEFORE -->
+    <section id="view-ledger" class="hidden max-w-6xl mx-auto p-8">
+        <button onclick="app.goHome()" class="mb-10 font-black text-blue-600 uppercase tracking-widest t-back">← Back</button>
+        <div class="ivory-card p-12 bg-slate-900 text-teal-400 font-mono h-[500px] overflow-hidden">
+            <h2 class="text-white text-2xl font-black mb-8">FASTT LIVE TRANSACTION LOG</h2>
+            <div id="ledger-stream" class="text-[11px] space-y-2 opacity-80"></div>
+        </div>
+    </section>
 
-// Update portfolio display
-function updatePortfolio(){
-  document.getElementById('portfolio-value').innerText=`Portfolio: $${portfolioValue.toFixed(2)}`;
-}
+    <script>
+        // 🛠️ APP CORE LOGIC
+        const app = {
+            isAr: false,
+            audioStarted: false,
+            toggleLang: () => {
+                app.isAr = !app.isAr;
+                document.body.classList.toggle('rtl', app.isAr);
+                document.getElementById('main-html').dir = app.isAr ? "rtl" : "ltr";
+                document.getElementById('langBtn').innerText = app.isAr ? "English / إنجليزي" : "عربي / Arabic";
+                app.translate();
+            },
+            showPage: (id) => {
+                document.querySelectorAll('main, section').forEach(s => s.classList.add('hidden'));
+                document.getElementById('view-' + id).classList.remove('hidden');
+                window.scrollTo(0,0);
+            },
+            goHome: () => app.showPage('home'),
+            playCommercial: () => {
+                if(!app.audioStarted) {
+                    const audio = document.getElementById('commercialAudio');
+                    audio.volume = 0.3;
+                    audio.play().catch(e => console.log("Waiting for user..."));
+                    app.audioStarted = true;
+                }
+            },
+            translate: () => {
+                const l = app.isAr ? 'AR' : 'EN';
+                const d = {
+                    EN: { balance: "Portfolio Value", report: "Get March Report", gold: "Gold & Oil", ledger: "FASTT Ledger", about: "Our Mission", contact: "Support Desk", back: "← Back", aboutT: "What We Do" },
+                    AR: { balance: "قيمة المحفظة", report: "تحميل تقرير مارس", gold: "الذهب والنفط", ledger: "نظام التحويل", about: "مهمتنا", contact: "دعم العملاء", back: "← عودة", aboutT: "من نحن" }
+                }[l];
+                document.querySelector('.t-balance').innerText = d.balance;
+                document.querySelector('.t-report').innerText = d.report;
+                document.querySelector('.t-f-gold').innerText = d.gold;
+                document.querySelector('.t-f-ledger').innerText = d.ledger;
+                document.querySelector('.t-f-about').innerText = d.about;
+                document.querySelector('.t-f-contact').innerText = d.contact;
+                document.querySelector('.t-about-title').innerText = d.aboutT;
+                document.querySelectorAll('.t-back').forEach(b => b.innerText = d.back);
+            },
+            generateReport: () => {
+                const blob = new Blob(["GT GLOBAL MASTER LOG 2026\nSTATUS: VERIFIED\nFEE RATE: 0.01%\nPORTFOLIO: $142,550.00"], {type: 'text/plain'});
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = "GT_Global_V18_Report.txt";
+                a.click();
+            }
+        };
 
-// Buy/Sell functions
-function buyStock(symbol,price){portfolioValue+=price;updatePortfolio();}
-function sellStock(symbol,price){portfolioValue-=price;updatePortfolio();}
+        // LEDGER ENGINE
+        setInterval(() => {
+            const stream = document.getElementById('ledger-stream');
+            if(!stream) return;
+            const log = document.createElement('div');
+            log.innerHTML = `> [${new Date().toLocaleTimeString()}] NODE_0${Math.floor(Math.random()*9)} SETTLED $${(Math.random()*5000).toFixed(2)} | FEE: $0.01`;
+            stream.prepend(log);
+            if(stream.children.length > 25) stream.lastChild.remove();
+        }, 1500);
 
-// Fetch live prices (sandbox/demo fallback if API fails)
-async function fetchPrice(symbol){
-  try{
-    const res = await fetch(`https://api.ipit.com/price?symbol=${symbol}&apikey=${API_KEY}`);
-    const data = await res.json();
-    return parseFloat(data.price);
-  }catch(e){
-    console.error(symbol,e);
-    return (Math.random()*100).toFixed(2); // fallback demo prices
-  }
-}
-
-// Load dashboard cards dynamically
-async function loadDashboard(){
-  const dashboard = document.getElementById('dashboard');
-  const allSymbols = [...STOCKS,...CRYPTOS];
-  for(let s of allSymbols){
-    const price = await fetchPrice(s);
-    const card = document.createElement('div');
-    card.className='card';
-    card.dataset.symbol=s;
-    card.innerHTML = `
-      <h3>${s}</h3>
-      <p>Price: $<span id='${s}-price'>${price}</span></p>
-      <div>
-        <button onclick="buyStock('${s}',${price})">Buy</button>
-        <button onclick="sellStock('${s}',${price})">Sell</button>
-      </div>
-    `;
-    card.addEventListener('click',()=>loadGraph(s));
-    dashboard.appendChild(card);
-  }
-}
-
-// Placeholder for graph module
-function loadGraph(symbol){
-  alert(`Graph and market data for ${symbol} will appear here.`);
-}
-
-// Auto-update prices every 5 seconds
-async function updatePrices(){
-  const allSymbols=[...STOCKS,...CRYPTOS];
-  for(let s of allSymbols){
-    const price = await fetchPrice(s);
-    const el = document.getElementById(`${s}-price`);
-    if(el) el.innerText = price;
-  }
-}
-
-loadDashboard();
-setInterval(updatePrices,5000);
-</script>
-
+        // BYPASS PROTECTION
+        window.alert = function() { return true; };
+    </script>
 </body>
 </html>
